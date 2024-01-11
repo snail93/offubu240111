@@ -1,0 +1,10 @@
+unclear which of the following if both were set at the beginning of getting express to install properly.
+$ env >> linux env variables 
+    NODE_TLS_REJECT_UNAUTHORIZED=0
+        toggle this between 1 and 0
+            $ export NODE_TLS_REJECT_UNAUTHORIZED=0
+$ npm config list >> npm env variables
+    strict-ssl = false 
+        toggle between true and false
+            $ npm config set strict-ssl true
+

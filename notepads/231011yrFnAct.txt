@@ -1,0 +1,24 @@
+const yearfortnightsCreate = (req, res) => {
+    Y.create({
+        year: req.params.year,
+        
+    })
+}
+
+const yearReadOne = (req,res) => {
+    Y.findById(yearid).then((e,y) => {
+        if(e) return;
+        if(!y) yearCreateNoOpFortnights();
+
+        let response = [];
+        for(f in y.fortnights){
+            let fortnight = {
+                f.ordinal_number, f.day1_fzero,
+                f.intent_cal_view.times_of_day_bounds.Early_AM_Begin
+            }
+            if(f.modes) fortnight.modes = f.modes;
+            response.push(fortnight);
+        }
+        return res.status(200).json(response);
+    }).catch( e => { res.status(400).json("err_log": e) });
+}

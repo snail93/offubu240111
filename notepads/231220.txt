@@ -1,0 +1,12 @@
+
+1. PUT activity Duration 
+  a.  hidden id ajax 
+  b.  collisions for PUT
+
+2. multiple activities get modal
+
+3.    >>>>    ng new 
+
+
+
+

@@ -1,0 +1,33 @@
+
+opening the modal 
+
+the user selected the 9am window
+    datetime-local value setting to 9am 
+    UNLESS 
+        activities list contains a duration with 
+            begin BEFORE 
+            end AFTER 
+                The Desired New Start Time
+
+API days property is an array 
+    new activity module FOR Nth DAY 
+
+    ON SETTING BEGIN 
+        collision check 
+
+            for a in day.activities
+                if(bt.value.getTime()<a.end.getTime() && bt.value.getTime()>a.begin.getTime())
+                    err('New Activity cannot begin during a period that is already intended for another activity')
+                    break;
+                et.min = bt.value.getMinutes()+1
+
+            once begin is valid, check day.activities again
+                et.y
+
+    ON SETTING END 
+        collision check 
+
+            for a in day.activities
+                if(et.value.getTime()<a.end.getTime() && bt.value.getTime()>a.begin.getTime())
+                    err('New Activity cannot end during a period that is already intended for another activity')
+                    break;

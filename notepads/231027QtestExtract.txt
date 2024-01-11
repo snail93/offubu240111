@@ -1,0 +1,51 @@
+const qtest = () => {
+    console.log("running $project");
+    Y.find(
+        {"fortnights.ordinal_number":4},
+        {year:1,fortnights:{$elemMatch:{ordinal_number:4}}})
+        .then(f => {
+            console.log(
+                f,
+                f[0].fortnights
+            );
+            // console.log(
+            //     "intent_cal_view:",
+            //     f[0].fortnights[0]
+            //         .intent_cal_view
+            // );
+        })
+        .catch(e => console.log("MongooseQueryingCatch:",e))
+
+    let aggDate = new Date(2023,2,1);
+    console.log('aggDate:',aggDate);
+    console.log('aggDate.toString():',aggDate.toString());
+    Y.aggregate(
+        [
+            {$match:{"fortnights.days":{$elemMatch:{day_dstring: "Wed Mar 01 2023 00:00:00 GMT+0000 (Greenwich Mean Time)"}}}},
+            {$unwind:"$fortnights"},
+            {$unwind:"$fortnights.days"},
+            {$limit:15},
+            {$project:{_id:1, f_id:"$fortnights._id", day:{day_dstring_p:"$fortnights.days.day_dstring"}}}
+        ]
+    ).then(r => console.log("aggR:",r))
+        .catch(e => console.log("changing e",e))
+
+    Y.find(
+        { "fortnights.day1_fzero":new Date(2023,1,26) },
+        { year:1, fortnights:1 }
+        ).then(d => console.log("expect single root:",d))
+        .catch(e => console.log("MongooseQueryingCatch:",e))
+
+    Y.find({year:2023})
+        .select('fortnights').select('days')
+        .then(y => {
+            console.log("find.then remove prep:",y[0].fortnights[4].days.id("6537eea370de9a40ccd875d3"));
+            // y[0].fortnights[4].days.id("6537eea370de9a40ccd875d3").deleteOne();
+            // console.log("find.then.then:",y[0].fortnights[4].days[3].day_dstring);
+        }).catch(e => console.log(e));
+}
+
+const yModel = () => {
+    let y = new Y();
+}
+

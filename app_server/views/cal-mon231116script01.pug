@@ -1,0 +1,276 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1 #{fortnight}th Fortnight of 2029 Calendar
+      h3  
+        small &nbsp;Fit user activities around the perception of their fatigue based on discussion and validations of their based opinions.
+  .row
+    .col-md-6
+      .card.card-primary(style={opacity:0.5})
+          .card-block
+            h2.card-title#rulid Toggle Rule Header if Desired
+            .card-header
+              p.lead Rule inference for adherentWhoAdherence, with ont-ised citation and rule inference for other requirements using verified API
+              p  
+                br
+                | shP2hasType[?P,?adherentWhoAdherence]:- 
+                br
+                | &emsp; sh:E21Person[?P],
+                br 
+                | &emsp; sh:FW44PhysicalActivity[?PA],
+                br 
+                | &emsp; sh:FW41CarriedOutBy[?PA,?P], ...
+          button(type="button" onClick="jbutton()") jbutton
+            script(src='/javascripts/jquery.js')
+
+  .row  
+    .col-12.col-md-6
+      p.rating
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star
+          i.far.fa-star
+          i.far.fa-star
+      p Current Adherence over 4 Fortnights is : Adherent
+  
+  .row
+    .col-12
+      .card.card-primary
+        .card-body
+          h2 Calendar / Timeslots 
+        .card-block.card-body 
+          p Show the named times of day as columns with rows of specific periods. Hovering over the periods shows the allocation and a "change" button, clicking on them could expose a sidebar or header with citations.
+          br
+          table
+            tbody 
+              tr 
+                td
+                  input(type="datetime-local", name="")
+                td
+                  a.btn.btn-primary.float-right(href=`/years/${year}/${fortnight}/activity-form`) Schedule a single activity Form
+                td 
+                  button.btn.btn-primary.float-right('data-toggle'='modal', 'data-target'='#testModal') Schedule a single activity Modal
+      
+          div(class='modal fade', id="testModal", tabindex="-1", role="dialog", aria-labelledby="exampleModalLabel" aria-hidden="true")
+            div(class="modal-dialog modal-lg", role="document")
+              div(class="modal-content")
+                .row(style={margin:'0',padding:"10px 10px"}).banner
+                  .col-12
+                    h5.float-right (Esc to exit)
+                    h1 Form for Adding a Single Activity
+                .row(style={margin:'0',padding:"10px 10px"})
+                  .col-12
+                    form(action=`/api/years/${year}/${fortnight}/intent`, method="post", role="form")
+                      .form-group.row
+                        label.col-2.col-form-label(for="name") Name
+                        .col-4
+                          input#name.form-control(name="name")
+                        label.col-2.col-form-label(for="acode") Activity Code
+                        .col-4
+                          select#acode.form-control.input-sm(name="acode")
+                            option 1000(No Activity)
+                            option 1001(Walking)
+                            option 1002(Running)
+                            option 9001(Pilates)
+                            option 9002(Yoga)
+
+                      .form-group.row
+                        label.col-2.col-form-label(for="begin") Begin
+                        .col-4
+                          input#begin(type="datetime-local" name="begin" onClick="beginClick()").form-control
+                        label.col-2.col-form-label(for="end") End
+                        .col-4
+                          input#end(type="datetime-local" name="end" onClick="endClick()").form-control
+                        
+                      .form-group.row
+                        .col-10
+                        .col-2
+                          input#add(type="submit" name="add" value="Add Activity").float-right
+
+
+        .card-block.card-header
+          .row
+            .col-2
+              .card-body.card-header(style={'text-align':'center',padding:'2px 0 2px 0','margin':'0px 0.5px 0px 0.5px'})
+                  p.card-header Day
+              -for(let d=1;d<15;d++)
+                .card-body.card-header(style={'text-align':'center',padding:'1.9px 0 1.9px 0','margin':'0 1px 0 1px'})
+                  .card-header(style={'margin':'0px 1px 0px 1px'}) 
+                    p #{d} day
+            .col-10
+              .sticky-xhead-ymarg-scroll-window
+                .ca-days-hours-table(style={'padding-left':'15px'})
+                  .row
+                    - for(let i=1;i<=12;i++)
+                      .card-body.card-header.col-1(style={'text-align':'center',padding:'1px 0 1px 0'})
+                        .row(style={'margin-right':'0','margin-left':'0'})
+                          .col-6(style={padding:'0'})
+                            p.card-header(style={'margin':'0px 1px 0px 1px'}) #{i*2-1}
+                          .col-6(style={padding:'0'})
+                            p.card-header(style={'margin':'0px 1px 0px 1px'}) #{i*2}
+                  - for(let d=1;d<=14;d++)
+                    .row(style={height:'34.9px','margin-bottom':'0'})
+                      - for(let g=1;g<=12;g++)
+                        .card-body.card-header.col-1(style={'text-align':'center',padding:'2px 0 2px 0'})
+                          .row(style={padding:'0 0 0 0','margin':'0 0 0 0'})
+                            .col-6(style={padding:'0',margin:'0'})
+                              .card-header(style={'margin':'0px 1px 0px 1px',padding:'3px 0 3px 0'}) 
+                                - if(g%2 && d%2 && d%2==0)
+                                  hr(style={height:'2px',background:'yellow',width:'30%',margin:'-3px 0px 0px 70%',padding:'0'})
+                                a(class="winel", id=`${d}d${g*2-1}h`, onClick="winClick()", style={padding:'0',margin:'0'},'data-toggle'='modal', 'data-target'='#testModal') Geo1
+                                - if(g%2 && d%2 && d%2==0)  
+                                  hr(style={height:'2px',background:'cyan',width:'50%',margin:'0px 1px -3px 50%',padding:'0'})
+                            .col-6(style={padding:'0',margin:'0'})
+                              .card-header(style={'margin':'0px 1px 0px 1px',padding:'3px 0 3px 0'}) 
+                                - if(g%2 && d%2)  
+                                  hr(style={height:'2px',background:'yellow',width:'50%',margin:'-3px 1px 0px 0px',padding:'0'}).y2
+                                p(style={padding:'0',margin:'0'}) Geo2
+                                - if(g%2 && d%2)  
+                                  hr(style={height:'2px',background:'cyan',width:'30%',margin:'0px 1px -3px 0px',padding:'0'})
+          .row 
+            .card-body
+              .col-2
+                .card-header
+                  .output 
+
+          script.
+            const winClick = (id) => { let idbuf='';let winh=0;let wind=0;
+              for(c in id){ idbuf+=id[c];
+                if(id[c]=='d'){ wind=parseInt(idbuf); console.log(wind); idbuf=''; continue; }
+                if(id[c]=='h'){ winh=parseInt(idbuf); idbuf=''; continue; }
+              }
+              console.log('win>modal:',id, wind,`days array el: !{days[12]}`);
+            }
+
+            let wl = document.getElementsByClassName("winel");
+            //- let days = !{days};
+            console.log(!{JSON.stringify(days[1])})
+            for(let w=0;w<wl.length;w++){
+              let idwwl = document.getElementById(wl[w].id)
+              console.log('idwwl.id:',idwwl.id)
+              //- wl[w].addEventListener(
+              idwwl.addEventListener( 
+                "click",
+                () => {  console.log('clickListener=>outer_scope_idwwl.id:',idwwl.id)
+                  //- winClick(idwwl.id);
+
+                  let idbuf='';let winh=0;let wind=0;
+                  for(c in idwwl.id){ idbuf+=idwwl.id[c];
+                    if(idwwl.id[c]=='d'){ wind=parseInt(idbuf); console.log('wind:',wind); idbuf=''; continue; }
+                    if(idwwl.id[c]=='h'){ winh=parseInt(idbuf); console.log('winh:',winh); idbuf=''; continue; }
+                  }
+
+                  let clickedDay = JSON.stringify(!{days[wind]});
+                  console.log("finding res: ",document.title)
+
+                  console.log('win>modal:',idwwl.id, wind);
+                  console.log(`days array el: `,clickedDay);
+                }
+              )
+              //- wl[w].click(winClick(wl[w].id))
+              //- idwwl.click(winClick(idwwl.id))
+            }
+
+
+            let bt = document.querySelector("#begin"); 
+            let et = document.querySelector("#end"); 
+            let now = new Date();
+            bt.value = now.toISOString().slice(0,16);
+            now.setMinutes(now.getMinutes() + 1)
+            et.min = now.toISOString().slice(0,16);
+            console.log('bt.value: ', bt.value, 'tf: ', now.getMinutes(), 'et.min: ', et.min);
+
+            const beginClick = () => { console.log('clicked'); }
+            const endClick = () => { console.log('end collisions'); }
+            let y2els = document.getElementsByClassName("y2");
+            for(let y=0;y<y2els.length;y++){ y2els[y].style.width='10%'; }
+
+            const scrollDemo = document.querySelector(".sticky-xhead-ymarg-scroll-window");
+            let earlyAmStart = !{testWake}; let scrollX = 2000/24*(earlyAmStart-1.5)
+
+            scrollDemo.scrollTo(scrollX,0)
+            const output = document.querySelector(".output");
+
+            scrollDemo.addEventListener(
+              "scroll", 
+              event => {
+                output.innerHTML = `scrollTop: ${scrollDemo.scrollTop} <br>
+                                    scrollLeft: ${scrollDemo.scrollLeft} `;
+              }, 
+              { passive: true }
+            );
+
+            document.body.onload = () => {
+              console.log('referrer:',document.referrer,'earlyAmStart: ',`!{fortnight}`,`!{testWake}`)
+            }
+
+        .card-block.card-body 
+          h4 any times that align with the chosen named periods are under the named headings for the selected activities in  sequential order, not geometrically
+    
+
+
+  .row
+    .col-12.col-md-9
+      .card.card-primary.review-card
+        .card-block
+          a.btn.btn-primary.float-right(href='/location/review/new') Add review
+          h2.card-title Comments Generated from previous 3 or 4 weeks
+          .row.review
+            .col-12.no-gutters.review-header
+              span.rating
+                i.fas.fa-star
+                i.fas.fa-star
+                i.fas.fa-star
+                i.far.fa-star
+                i(style={color: 'red'}).far.fa-star
+              span.reviewAuthor &nbsp;&nbsp; Fatigue change
+              small.reviewTimestamp.float-right  16 February 2017
+            .col-12
+              p Fatigue went from 2 to 1, maintain rest frequency, vm will likely raise fatigue to 2, increase tea/hydration/hot chocolate. trial admin, group admin and accepted aid/care users can push SLEEP EMOJI here
+          .row.review
+            .col-12.no-gutters.review-header
+              span.rating
+                i.fas.fa-star
+                i.fas.fa-star
+                i.fas.fa-star
+                i.far.fa-star
+                i.far.fa-star
+              span.reviewAuthor &nbsp;&nbsp; FOOD REQUEST
+              small.reviewTimestamp.float-right 14 February 2017
+            .col-12
+              p FOOD diary can post food emojis here. FOOD REQUESTS can also be made.
+    .col-12.col-md-3
+      .card.card-primary
+        .card-body
+          h2.card-title Active Times             
+        .card-header
+          p.card-text Early AM : 
+            span.float-right 5:00am - 6:59am
+          p.card-text Morning : 
+            span.float-right 7:00am - 11:59am
+          p.card-text Afternoon : 
+            span.float-right 12:00pm - 4:59pm
+          p.card-text Eve : 
+            span.float-right 5:00pm - 8:00pm 
+
+        .card-body.a.btn.btn-primary(href='/location/review/new') Change Your Active Times
+      .card.card-primary
+        .card-block
+          h2.card-title Modes
+          .card-header
+            span.badge.badge-warning
+              i.fa.fa-check
+              | &nbsp;InhibitoryControl:2
+            | &nbsp;
+            span.badge.badge-warning
+              i.fa.fa-check
+              | &nbsp;Fatigue:1
+            | &nbsp;
+            span.badge.badge-warning
+              i.fa.fa-check
+              | &nbsp;PriorityPA:MM
+            | &nbsp;
+
+

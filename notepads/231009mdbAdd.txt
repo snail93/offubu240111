@@ -1,0 +1,62 @@
+> db.locations.insertOne ( {
+    name: 'DemoPath',
+    address: '5 Duke Street, Reading, RG1 4RY',
+    rating: 4,
+    facilities: ['Kernels', 'Contradictions', 'Ruger'],
+    coords: [-0.9690943, 51.4548349],
+    openingTimes: [{ days: 'Monday - Friday',
+        opening: '6:00am', closing: '7:00pm',
+        closed: false
+    }, { days: 'Saturday',
+        opening: '7:00am', closing: 'Midnight',
+        closed: false
+    }, { days: 'Sunday', 
+        closed: true 
+    }]
+})
+
+> db.locations.update({ name: 'DemoPath' }, {   
+    $push: {
+        reviews: {
+            author: 'Toby',
+            _id: ObjectId(),
+            rating: 4,
+            timestamp: new Date("Mar 12, 2016"),
+            reviewText: 'new Date(Y,M,D,H,M,S), new Date(\'Mar 12, 2016\'), bicep curls every day'
+        }
+    }
+})
+
+
+
+
+
+lng=-0.9690884
+lat=51.445041
+const lng = parseFloat(req.query.lng);
+const lat = parseFloat(req.query.lat);
+console.log("lng and lat: ",lng, lat);
+if(!lng||!lat) return res.status(404).json({msg: 'both lng and lat are required for a valid location query'});
+const near = { type: "Point",  coordinates: [lng,lat] };
+const geoOptions = {
+    distanceField: 'distance.calculated',
+    spherical: true, maxDistance: 20000,
+    limit: 10
+}
+
+const results = await Loc.aggregate([ 
+    { $geoNear: { near, ...geoOptions } }
+]);
+
+db.locations.aggregate([{$geoNear:{type:"Point",cooridinates: [-0.9690884,51.445041], distanceField: 'distance.calculated', spherical: true, maxDistance: 20000, limit: 10}}])
+console.log('api_controllers results:');
+const locations = results.map( result => {
+    return {
+        id: result._id,
+        name: result.name,
+        address: result.address,
+        rating: result.rating,
+        facilities: result.facilities,
+        distance: `${result.distance.calculated.toFixed()}m`
+    }
+});

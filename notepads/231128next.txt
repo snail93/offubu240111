@@ -1,0 +1,43 @@
+occupied slot
+    show:
+        typeGroup  =>  
+        activityName
+        activityCode 
+        activityDuration
+    option: 
+        change duration
+        if needing to change name or code, 
+        DELETE
+
+unoccupied slot     
+    
+    activity duration 3 sets tends to be 
+        3sets of 
+            1 min reps 
+            2 min rest
+        9 minutes at least for 3 sets 
+        tends to 5 or 6 sets
+
+
+    bt.min should be 5 minutes later than the previous activity 
+    bt.max should be 15 minutes before the next activity
+        because 
+            bt - et : should be at least 10 minutes.
+                et.max is 5 mins before next activity.
+    et.min should be 10 minutes after bt.
+        request option to change minimum activity duration
+            reject - just schedule another 10 minute activity.
+                if you are doing intense enough sets to require 2 minute rest minimum and doing minimum 3 sets of each but are alternating activities, put them adjacent to eachother.
+
+    et.max should be 5 minutes before the next activity that day.
+    
+
+
+
+PLACE hr into hrBarSpan 
+    hr(class="hry", style={
+        height:'2px', width:'10%',
+        padding:'0', margin:'-3px 0 0 0',
+        background:'yellow'
+    })
+

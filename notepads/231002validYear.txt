@@ -1,0 +1,91 @@
+year {
+    r_year: 2023
+    r_fortnights:[
+        {
+            r_ordinal_number: 1,
+            r_day1_fzero: new Date(),
+            r_intent_cal_view: {
+                r_context: 'intent',
+                r_activities: [
+                    { 
+                        r_activity_code: '11303',
+                        r_duration: {
+                            r_begin: new Date(
+                                year, month, day
+                                hours, minutes
+                            ), 
+                            r_end: new Date(
+                                year, month, day
+                                hours, minutes + 90
+                            )
+                        }
+                    },
+                    {
+                        r_activity_code: '11301',
+                        r_duration: {
+                            r_begin: new Date(
+                                year, month, day +2
+                                hours, minutes
+                            ), 
+                            r_end: new Date(    
+                                year, month, day +2
+                                hours, minutes +90
+                            )
+                        }
+                    }
+                ]
+            },
+            r_adhered_cal_view: {
+                r_context: 'adhered',
+                r_activities: [
+                    //underadhering to the intent, will it be made up elsewhere
+                    {
+                        r_activity_code: '11303',
+                        r_duration: {
+                            r_begin: new Date(
+                                year, month, day
+                                hours, minutes +10
+                            ), 
+                            r_end: new Date(
+                                year, month, day
+                                hours, minutes +70
+                            )
+                        }
+                    }, 
+                    //overadhering in another activity, METS comparison for overall adherence, the overall adherence determines the make up over the weeks. METs Adhered, mAdhered
+                    {
+                        r_activity_code: '11301',
+                        r_duration: {
+                            r_begin: new Date(
+                                year, month, day +2
+                                hours, minutes -10
+                            ), 
+                            r_end: new Date(
+                                year, month, day
+                                hours, minutes + 90
+                            )
+                        }
+                    }
+                ]
+            },
+            r_comments: {
+                r_author: 'Samwise Sulek',
+                r_timestamp: new Date(),
+                r_comment_text: 'Methylation Lecture'
+                x_labels: [
+                    {
+                        extracted_text: 'interacts with other internal components to cause change',
+                        label_name: 'stabilise future state',
+                    },
+                    {
+                        extracted_text: 'membrane portals',
+                        label_name: 'keyword category',
+                    }
+                ]
+            }
+        },
+        {
+
+        },
+    ]
+}

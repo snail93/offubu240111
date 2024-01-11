@@ -1,0 +1,26 @@
+ability to create activities
+    that ARE NOT adherent to a period
+    that ARE adherent to total intent durations that accumulate to adherence
+
+
+    >>>>    => currently lacking phone location validation of duration
+    therefore
+        manualAdherenceClaim
+            CREATE activityAdherenceClaim store->adheredPhysicalActivities
+        
+    this is the same as registration for adheredGroupActivities
+    but adheredPhysicalActivities should receive location events
+        and some should have location event verification cache
+            cachedPhysicalActivities
+
+fortnight['moderateAerobicDurationTotal']
+fortnight['vigorousAerobicDurationTotal']
+fortnight['moderateMuscleDurationTotal']
+fortnight['vigorousMuscleDurationTotal']
+
+
+          - let gme = document.getElementById('gmEnd')
+          
+            .card
+              p Extra POST
+

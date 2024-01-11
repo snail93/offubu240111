@@ -1,0 +1,8 @@
+of the previous below, some of the logging is kept in the server/controller/cal.js
+but static y.f.a has been removed 
+now proceeding with modelling for Y.f.d.a 
+
+after yearCreate(), yearCreatedOpacity, fPendingOpacity, adherenceBasisDuration(intent,adhered)
+
+    revisit will occur when considering the movingAverageModes setup 
+

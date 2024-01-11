@@ -1,0 +1,3 @@
+intentPhysicalActivities - lime
+intentGroupActivities - turquoise
+expectedRoutineActivities - mediumspringgreen or (white, opacity:85%)

@@ -1,0 +1,2 @@
+subdoc creation testing is easier with front end form
+there are nested promises, checking functionality must wait til front end

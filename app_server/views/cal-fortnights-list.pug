@@ -1,0 +1,30 @@
+extends layout
+include _includes/sharedHTMLfunctions
+
+block content
+  .row.banner
+    .col-12
+      h1 List of fortnights for #{year}
+        small &nbsp; Fatigue analysis per fortnight (Ref: pending).
+  - for(let r = 0;r < fortnights.length/3; r++)
+    .row
+      - for(let c=1;c<=3;c++)
+        .col-12.col-md-4
+          .card
+            .card-block
+              h4
+                a(href=`/years/${year}/${r*3 + c}`,style={'display':'flex'}) Fortnight #{r*3 + c}
+                  span(style={'font-size': '1rem','align-self': 'flex-end','margin-left':'auto'}) from   
+                    +formatDate(fortnights[r*3 + c-1].day1_fzero)
+              p.address muscle_building biased 
+                small &nbsp;&nbsp;
+                  i(style={color: 'red'}).far.fa-check-circle &nbsp;
+                  i(style={color: 'green'}).fas.fa-clipboard-check &nbsp;
+                span.badge.badge-pill.badge-default.float-right fatigue: 2
+              p
+                span.badge.badge-pill(style={'background-color': 'green'}).badge-default.float-right Adherence: 3
+              .facilities
+                span.badge.badge-success eggs 
+                span.badge.badge-success olive oil 
+                span.badge.badge-success butter
+    br

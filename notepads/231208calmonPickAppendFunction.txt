@@ -1,0 +1,67 @@
+for(let d=0;d<14;d++){
+
+    let diPAs = pageData.days[d].intentPhysicalActivities;
+    for(let a=0;a<diPAs.length;a++){
+        
+        let dipaBegin = new Date(diPAs[a].duration.begin);
+        let dipaEnd = new Date(diPAs[a].duration.end);
+        let dipaTmins = (dipaEnd.getTime() - dipaBegin.getTime())/60000;
+        
+        getModalPicker(dipaBegin, d, diPAs[a], 'B');
+        getModalPicker(dipaEnd, d, diPAs[a], 'E');
+    
+        appendBeginBar(dipaBegin, dipaEnd, dipaTmins, d, 'lime');
+        appendEndBar(dipaEnd, dipaTmins, d,'lime');
+    
+        let dipaIntervalsNum = Math.ceil(dipaTmins/30) - 2;
+        if(dipaIntervalsNum==0) continue;
+        let interval = new Date(dipaBegin);
+        for(let dI=1;dI<=dipaIntervalsNum;dI++){ 
+            interval.setTime(interval.getTime()+1800000);
+            console.log('picking Interval...');
+            getModalPicker(interval, d, diPAs[a], 'I');
+            appendIntervalBar(interval, d,'lime');
+        }
+    }
+}
+
+
+
+
+
+///////////////////////
+postBeginCollision
+postEndCollision
+///////////////////////
+Replaced collisions with above functions.
+        let endMaxInitial = new Date(pageData.days[wind-1].date);
+        endMaxInitial.setHours(winh);    endMaxInitial.setMinutes(winm);
+        endMaxInitial.setMinutes(endMaxInitial.getMinutes() + 10);
+        
+        let aEndCollisionTime = new Date(pageData.days[wind-1].date);
+        let collisionMillis = 0x7ffffff;
+        for(a of allAs){
+            let aDB = new Date(a.duration.begin);
+            if(aDB.getTime() - endMaxInitial.getTime() < 0) { console.log('continuing'); continue; }
+            if(aDB.getTime() - endMaxInitial.getTime() < collisionMillis){ 
+                collisionMillis = aDB.getTime() - endMaxInitial.getTime();
+                aEndCollisionTime = new Date(aDB.getTime());
+                aEndCollisionTime.setMinutes(aEndCollisionTime.getMinutes() - 5);
+            }
+        }
+
+        let beginMinInitial = new Date(pageData.days[wind-1].date);
+        beginMinInitial.setHours(winh);    beginMinInitial.setMinutes(winm);
+        let aBeginCollisionTime = new Date(pageData.days[wind-1].date);
+        aBeginCollisionTime = postBeginCollision(aBeginCollisionTime, beginMinInitial, allAs);
+
+        // collisionMillis = 0x7ffffff;
+        // for(a of allAs){
+        //     let aDB = new Date(a.duration.end);
+        //     if(beginMinInitial.getTime() - aDB.getTime() < 0) { console.log('continuing'); continue; }
+        //     if(beginMinInitial.getTime() - aDB.getTime() < collisionMillis){ 
+        //         collisionMillis = beginMinInitial.getTime() - aDB.getTime();
+        //         aBeginCollisionTime = new Date(aDB.getTime());
+        //         aBeginCollisionTime.setMinutes(aBeginCollisionTime.getMinutes() + 5);
+        //     }
+        // }

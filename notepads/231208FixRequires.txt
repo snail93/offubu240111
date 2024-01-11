@@ -1,0 +1,5 @@
+front collisions pending controller logic removal.
+
+2024-02-22 0558 End Bar Issue
+2024-02-16 0815-0825 Bar Issue
+Active times changer

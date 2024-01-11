@@ -1,0 +1,117 @@
+db.collection.update(
+    { d : 2014001 , m :123456789},
+    {   
+        $pull : { 
+            "topups.data" : {"val":NumberLong(200)} 
+        } 
+    } 
+)
+
+
+db.year.update(
+    { year : 2023 },
+    {   
+        $pull : { 
+            "fortnights.5.intent_cal_view.days.4.activities" : {
+                "_id":	"653675801bd46f5b206c3423"
+            } 
+        } 
+    } 
+
+
+db.year.update({year:2023},{$pull:{"fortnights.5.intent_cal_view.days.4.activities":{"_id":"653675801bd46f5b206c3423"}}})
+db.year.update({year:2023},{$pull:{"fortnights.0.intent_cal_view.days.0.activities":{"_id":"653675801bd46f5b206c3423"}}})
+"653675801bd46f5b206c3423"
+"653675801bd46f5b206c3423"
+"653675801bd46f5b206c3422"
+
+https://www.mongodb.com/docs/manual/reference/operator/update/pull/
+db.years.updateMany({},{$pull:{fortnights:{$elemMatch:{"_id":"653675801bd46f5b206c3420"}}}})
+
+
+
+
+
+
+
+
+
+
+
+
+https://www.mongodb.com/community/forums/t/how-to-delete-object-in-nested-array-array/195377
+
+[
+  {
+    _id: ObjectId("6352b213f60e6c14eade7dc5"),
+    companyId: ObjectId("5ec1c4c7ea40dd3912ff206d"),
+    memberId: ObjectId("61e538180d543336dfa52a94"),
+    isActive: true,
+    name: "SISWA1",
+    profileImage: "string",
+    email: "1@siswa.com",
+    phone: "088123123123",
+    mainClassId: null,
+    classId: null,
+    datas: [
+      {
+        id: ObjectId("6350ce45605a1c2f35e4c607"),
+        classId: ObjectId("62f19d68c149abd43526d1a3"),
+        lessonId: ObjectId("62f0af32cb716c443625c3d0"),
+        year: "2002",
+        report: [
+          {
+            activityId: ObjectId("6350f1313f586971dfd1effd"),
+            meet: 3,
+            isPresent: true,
+            scores: [
+              {
+                key: "TUGAS",
+                value: 50
+              }
+            ]
+          },
+          {
+            activityId: ObjectId("6350f13aaa8f2d84071fc3cd"),
+            meet: 12,
+            isPresent: true,
+            scores: [
+              {
+                key: "TUGAS",
+                value: 50
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+
+
+
+db.collection.updateOne(
+    { 
+        "datas": 
+            {
+                "$elemMatch": {
+                    "id": ObjectId("6350ce45605a1c2f35e4c607"),
+                    "report.activityId": ObjectId("6350f1313f586971dfd1effd")
+                }
+            }
+    },
+    {
+        $pull : { 
+            "datas.$.report" : { 
+                activityId:  ObjectId("6350f13aaa8f2d84071fc3cd")
+            } 
+        }
+    }
+)
+
+
+
+
+CHECK FOR matchedCount
+https://stackoverflow.com/questions/70071433/how-to-delete-a-nested-object-in-mongodb-collection
+db.years.update({year:2023})

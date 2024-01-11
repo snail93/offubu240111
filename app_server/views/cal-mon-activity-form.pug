@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1 Form for Adding a Single Activity
+
+  .row
+    .col-12.col-md-8
+      form(action=`/api/years/${year}/${fortnight}/intent`, method="post", role="form")
+        .form-group.row
+          label.col-2.col-form-label(for="name") Name
+          .col-4
+            input#name.form-control(name="name")
+
+          label.col-2.col-form-label(for="acode") Activity Code
+          .col-4
+            select#acode.form-control.input-sm(name="acode")
+              option 1000 (No Activity)
+              option 1001 (Walking)
+              option 1002 (Running)
+              option 9001 (Pilates)
+              option 9002 (Yoga)
+
+        .form-group.row
+          label.col-2.col-form-label(for="begin") Begin
+          .col-4
+            input#begin(type="time" name="begin").form-control
+
+          label.col-2.col-form-label(for="end") End
+          .col-4
+            input#end(type="time" name="end").form-control
+
+        .form-group.row
+          .col-10
+          .col-2
+            input#add(type="submit" name="add" value="Add Activity").float-right
+
+    .col-12.col-md-4
+      p To include custom activity, select Activity Code "0" and prefix the Name with EXERCISE_CUSTOM_TYPE

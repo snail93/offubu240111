@@ -1,0 +1,12 @@
+mixin outputRating(rating) 
+    - for(let i=0;i<rating;i++)
+        i.fas.fa-star
+    - for(let i=rating;i<5;i++)
+        i.far.fa-star
+
+mixin formatDate(dateString)
+    - const date = new Date(dateString);
+    - const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    - const output = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+    - console.log(output,dateString)
+    =output

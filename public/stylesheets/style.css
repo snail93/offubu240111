@@ -1,0 +1,175 @@
+@import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cabin', cursive;
+}
+
+legend {
+  font-family: 'Cabin', cursive;
+}
+
+.navbar {
+  background-color: #000000;
+  border-color: #911821;
+}
+
+.navbar-brand {
+  font-family: 'Cabin', cursive;
+  color: #fff;
+}
+
+.card {
+  background-color: #61616130;
+  padding: 1rem;
+}
+
+.card-primary {
+  border-color: #000000;
+  margin-bottom: 0.5rem;
+}
+
+.banner {
+  margin-top: 4em;
+  border-bottom: 1px solid #61616130;
+  margin-bottom: 1.5em;
+  padding-bottom: 0.5em;
+}
+
+.review-header {
+  background-color: #2525256a;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.review {
+  margin-right: -16px;
+  margin-left: -16px;
+  margin-bottom: 0.5em;
+}
+
+.badge-default, .btn-primary {
+  background-color: #ad1d28;
+  border-color: #911821;
+}
+
+.btn-submit {
+  background-color: gainsboro;
+  border-color: grey;
+}
+
+h4 a, h4 a:hover {
+  color: #000000;
+}
+
+h4 small {
+  font-size: 60%;
+  line-height: 200%;
+  color: #aaa;
+}
+
+h1 small {
+  color: #858585;
+}
+
+.address {
+  margin-bottom: 0.5rem;
+}
+
+.facilities span.badge {
+  margin-right: 2px;
+}
+
+p {
+    /* margin-bottom: 0.3rem; */
+    font-size: small;
+}
+
+a {
+  color: rgba(255, 255, 255, 0.8)
+}
+
+a:hover {
+  color:#fff;
+}
+
+body {
+  font-family: "Cabin", Arial, sans-serif;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+input {
+  width: 200px;
+}
+
+.cal-card{
+  height: 350px;
+}
+
+.sticky-xhead-ymarg-scroll-window{
+  display: flex;  flex: 1 1 100%;
+  flex-direction: column;
+  max-width: 200%;  max-height: 200%;
+  overflow: scroll;
+  /* justify-content: space-between; */
+}
+.ca-days-hours-table{
+  flex: 1 1 200%;
+  width:2300px;  height: 400px;
+  min-width: 0;  min-height: 0;
+}
+.day-margin-keeper{
+
+}
+.scroll-corrector-stackoverflow-WRAP-card-body {
+  display: flex;
+  flex: 1 1 auto;
+  padding:0.4rem;
+  flex-direction: column;
+  height: 100px;
+  justify-content: space-between;
+  background-color: gray;
+}
+.days-col{
+  min-height:0;
+  display: flex;
+  flex-direction: column;
+  flex: 1, 1, auto;
+}
+.days-scroll {
+  flex: 1 0 200%;
+  /* background-color: green;   */
+  min-height:0;
+  /* height: 300px; */
+  /* position: absolute;
+  left:0px; */
+  /* overflow-y: scroll; */
+}
+
+.scroll-hours-stackoverflow-WRAP-card-body {
+  display: flex;
+  flex: 1 1 200%;
+  max-width: 200%;
+  padding-left:2rem;
+  flex-direction: row;
+  overflow-x: scroll;
+  /* width: 1800px; */
+  justify-content: space-between;
+}
+.hours-scroll{
+  flex: 1 0 200%;
+  width:1800px;  
+  min-width:0;
+  /* overflow-x: scroll; */
+  /* overflow: auto; */
+  /* padding-left: 40px; */
+}
+
+
+
+.card-body{
+  -ms-flex:1 1 auto;
+  flex:1 1 auto;
+  padding:0.4rem
+}

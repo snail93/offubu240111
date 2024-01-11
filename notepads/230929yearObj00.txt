@@ -1,0 +1,106 @@
+YEAR obj000
+
+db.years.insertOne({
+    year: 2023,
+    fortnights: [{
+        day1_fzero: new Date("2025-04-09T00:00:00"),
+        intent_cal_view: {
+            context: "intent",
+            time_of_day_bounds: {
+                Early_AM_Begin: 11, Early_AM_End: 12,
+                Morning_Begin: 13, Morning_End: 14,
+                Afternoon_Begin: 15, Afternoon_End: 16,
+                Evening_Begin: 17, Evening_End: 18
+            },
+            activities:[
+                {  
+                    activity_code: '11303',
+                    duration: {
+                        begin: new Date("2025-12-08T08:00:00"),
+                        end: new Date("2025-12-08T09:00:00")
+                    }
+                },
+                {
+                    activity_code: '11303',
+                    duration: {
+                        begin: new Date("2025-12-09T08:00:00"),
+                        end: new Date("2025-12-09T09:00:00")
+                    }
+                },
+                {
+                    activity_code: '11609',
+                    duration: {
+                        begin: new Date("2025-12-09T11:00:00"),
+                        end: new Date("2025-12-09T12:30:00")
+                    }
+                }
+            ]
+            },
+        adhered_cal_view: {
+            context: 'adhered',
+            time_of_day_bounds: {
+                Early_AM_Begin: 11, Early_AM_End: 12,
+                Morning_Begin: 13, Morning_End: 14,
+                Afternoon_Begin: 15, Afternoon_End: 16,
+                Evening_Begin: 17, Evening_End: 18
+            },
+            activities:[
+                {  
+                    activity_code: '11303',
+                    duration: {
+                        begin: new Date("2025-12-08T08:10:00"),
+                        end: new Date("2025-12-08T08:50:00")
+                    }
+                },
+                {
+                    activity_code: '11303',
+                    duration: {
+                        begin: new Date("2025-12-09T08:00:00"),
+                        end: new Date("2025-12-09T09:00:00")
+                    }
+                },
+                {
+                    activity_code: '11609',
+                    duration: {
+                        begin: new Date("2025-12-09T10:30:00"),
+                        end: new Date("2025-12-09T12:30:00")
+                    }
+                }
+            ]
+        },
+        modes: [
+            { mode_name: 'head punching infers rib pain', mode: 1 },
+            { mode_name: 'leg kicking infers shin pain', mode: 1 }
+        ],
+        nutrition_history: [
+            {
+                name: 'All Day Breakfast',
+                measure_list:[
+                    { unit: 'Calories(cal)', measure: 2500 },
+                    { unit: 'Protein(g)', measure: 150 },
+                    { unit: 'Carbs(g)', measure: 200 },
+                    { unit: 'Fat(g)', measure: 50 },
+                    { unit: 'Fibre(g)', measure: 25 },
+                    { unit: 'Salt(g)', measure: 10 },
+                ]
+            }
+        ],
+        comments: [
+            {
+                author: 'Sam Sulek',
+                timestamp: new Date(),
+                comment_text: 'Methylation lectures',
+                labels:[ 
+                    { 
+                        name: 'learning anticipation', 
+                        label_text: 'stablise future' 
+                    },
+                    {
+                        name: 'cellular level',
+                        label_text: 'knowledge'
+                    } 
+                ]
+            }
+        ]
+    }]
+})

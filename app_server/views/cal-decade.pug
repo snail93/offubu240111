@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1= title
+  .row
+    .col-12.col-md-4
+      p
+        | Reference List -> schema stage
+        | <br/> <br/> #{content}
+    .col-12.col-md-8
+      .card.card-primary
+
+        .card-body
+          p A Decade
+          - for (let y=0;y<view_years.length/5;y++)
+            <br/>
+            .row    
+              - for (let z=0;z<5;z++)
+                - let yo = '30%'; let po = '100%'; let ypath=`/years`
+                - for(let c=0;c<=years.length;c++)
+                  - if(c==years.length){console.log(yo,view_years[y*5+z]);break;}
+                  - if(parseInt(view_years[y*5+z])!=parseInt(years[c].year)){continue;}
+                  - if(parseInt(view_years[y*5+z])==parseInt(years[c].year)){yo='100%';po='30%';ypath=`/years/${view_years[y*5+z]}/`;console.log(yo,view_years[y*5+z],'breaking');break;}
+                .col-2
+                  .card(style={padding:'1rem'})
+                    .row
+                      .col-9
+                        a(style={'align': centre, 'opacity':yo},href=ypath) #{view_years[y*5+z]}
+                      .col-3(style={'transform':'translateX(-50%)', 'opacity':po})
+                        - if(po=='30%')
+                          div >
+                        - if(po=='100%')
+                          a(href=`/api/years/${view_years[y*5+z]}`) >

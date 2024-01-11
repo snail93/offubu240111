@@ -1,0 +1,11 @@
+https://www.youtube.com/shorts/8q_0s1NDgF0
+
+another bug:
+  inputting allows END to be less than BEGIN.
+
+  T is allowed to be less than 5 mins
+
+
+If realism is a type of mastery, you will need multiple 10 hour days a week for at least 4 years.
+If good enough is more what you're aiming for, multiple 10 hour days a week for at least 1 year only will have come with constant dissatisfaction and end knowing that you quit too soon.
+No written description will be of much help considering the intuitions built on the way to mastery.
